@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 醫師精準醫療工作坊｜注射之前，先看清楚</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --bg2: #0d1318;
+    --bg3: #111820;
+    --cyan: #00c8d4;
+    --cyan-dim: rgba(0,200,212,0.15);
+    --gold: #c8a96e;
+    --red: #e05555;
+    --text: #e8edf2;
+    --text-muted: #8aa0b4;
+    --text-dim: #4a5a68;
+    --border: rgba(0,200,212,0.18);
+    --border-dim: rgba(255,255,255,0.07);
+    --fs-label: 13px;
+    --fs-xs: 16px;
+    --fs-sm: 16px;
+    --fs-base: 17px;
+    --fs-md: 18px;
+    --fs-lg: clamp(20px,3vw,26px);
+    --fs-xl: clamp(26px,4.5vw,42px);
+    --fs-hero: clamp(36px,7vw,76px);
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    background:var(--bg); color:var(--text);
+    font-family:'Noto Sans TC', sans-serif;
+    font-weight:300; font-size:var(--fs-base);
+    line-height:1.85; overflow-x:hidden;
+  }
+  body::before {
+    content:''; position:fixed; inset:0; z-index:0;
+    background-image:
+      linear-gradient(rgba(0,200,212,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,212,0.025) 1px, transparent 1px);
+    background-size:60px 60px; pointer-events:none;
+  }
+
+  /* HERO */
+  .hero {
+    position:relative; z-index:1; min-height:100svh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:clamp(80px,12vw,120px) clamp(20px,5vw,48px) 80px;
+    overflow:hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; top:-15%; left:50%; transform:translateX(-50%);
+    width:min(900px,130vw); aspect-ratio:1; border-radius:50%;
+    background:radial-gradient(circle, rgba(0,200,212,0.07) 0%, transparent 65%);
+    pointer-events:none;
+  }
+  .hero-tag {
+    display:inline-block; border:1px solid var(--cyan); color:var(--cyan);
+    font-size:var(--fs-label); letter-spacing:0.2em;
+    padding:6px 20px; border-radius:2px;
+    margin-bottom:clamp(28px,4vw,48px);
+    animation:fadeUp .6s ease both;
+  }
+  .hero-title {
+    font-family:'Noto Serif TC', serif; font-size:var(--fs-hero);
+    font-weight:700; line-height:1.15; letter-spacing:0.04em;
+    margin-bottom:16px; animation:fadeUp .6s ease .1s both;
+  }
+  .hero-title .accent { color:var(--cyan); }
+  .hero-subtitle {
+    font-size:var(--fs-md); color:var(--text-muted); letter-spacing:0.06em;
+    margin-bottom:clamp(32px,5vw,56px); animation:fadeUp .6s ease .2s both;
+  }
+  .hero-meta {
+    display:flex; flex-wrap:wrap; gap:14px 24px; justify-content:center;
+    margin-bottom:clamp(36px,5vw,60px); animation:fadeUp .6s ease .3s both;
+  }
+  .meta-item { display:flex; align-items:center; gap:8px; font-size:var(--fs-sm); color:var(--text-muted); }
+  .meta-item strong { color:var(--text); font-weight:500; }
+  .hero-cta { animation:fadeUp .6s ease .4s both; }
+  .btn-primary {
+    display:inline-block; background:var(--cyan); color:#080c10;
+    font-size:var(--fs-sm); font-weight:700; letter-spacing:0.12em;
+    padding:16px 44px; border:none; cursor:pointer; text-decoration:none;
+    clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+    transition:opacity .2s, transform .2s; white-space:nowrap;
+  }
+  .btn-primary:hover { opacity:.85; transform:translateY(-2px); }
+  .seats-note { margin-top:14px; font-size:var(--fs-xs); color:var(--red); letter-spacing:0.08em; }
+  .scroll-hint {
+    position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+    color:var(--text-dim); font-size:12px; letter-spacing:0.18em;
+    animation:fadeUp .6s ease .7s both;
+  }
+  .scroll-line {
+    width:1px; height:44px;
+    background:linear-gradient(to bottom, var(--cyan), transparent);
+    animation:scrollLine 1.7s ease-in-out infinite;
+  }
+  @keyframes scrollLine { 0%,100%{opacity:.3;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(.6)} }
+
+  /* SECTION BASE */
+  section { position:relative; z-index:1; }
+  .container { max-width:920px; margin:0 auto; padding:0 clamp(20px,5vw,48px); }
+  .section-label {
+    font-size:var(--fs-label); letter-spacing:0.22em; color:var(--cyan);
+    margin-bottom:14px; display:flex; align-items:center; gap:14px;
+  }
+  .section-label::after { content:''; flex:1; height:1px; background:var(--border); }
+  .section-title {
+    font-family:'Noto Serif TC', serif; font-size:var(--fs-xl);
+    font-weight:600; line-height:1.3; margin-bottom:12px;
+  }
+  .section-lead { font-size:var(--fs-md); color:var(--text-muted); margin-bottom:clamp(32px,5vw,52px); max-width:640px; }
+
+  /* PROBLEM */
+  .problem { padding:clamp(64px,10vw,110px) 0; }
+  .problem-quote {
+    border-left:3px solid var(--cyan);
+    padding:clamp(20px,3vw,32px) clamp(20px,4vw,40px);
+    background:var(--bg3); margin-bottom:clamp(32px,5vw,52px);
+  }
+  .problem-quote p {
+    font-family:'Noto Serif TC', serif;
+    font-size:clamp(17px,2.2vw,22px); font-weight:300; line-height:2;
+  }
+  .problem-quote .highlight { color:var(--cyan); }
+  .problem-quote .danger { color:var(--red); }
+  .problem-cards {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr)); gap:16px;
+  }
+  .problem-card {
+    background:var(--bg3); border:1px solid var(--border-dim);
+    padding:clamp(20px,3vw,28px); position:relative; overflow:hidden;
+  }
+  .problem-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg, var(--cyan), transparent);
+  }
+  .problem-card-icon { font-size:26px; margin-bottom:12px; }
+  .problem-card h3 { font-size:var(--fs-sm); font-weight:500; color:var(--cyan); margin-bottom:10px; }
+  .problem-card p { font-size:var(--fs-xs); color:var(--text-muted); line-height:1.8; }
+
+  /* CURRICULUM */
+  .curriculum { padding:clamp(64px,10vw,110px) 0; background:var(--bg2); }
+  .curriculum-blocks { display:flex; flex-direction:column; }
+  .curr-block {
+    display:grid; grid-template-columns:clamp(52px,8vw,88px) 1fr;
+    border-bottom:1px solid var(--border-dim);
+    padding:clamp(24px,4vw,36px) 0; transition:background .2s;
+  }
+  .curr-block:hover { background:rgba(0,200,212,0.03); }
+  .curr-num {
+    font-family:'Noto Serif TC', serif; font-size:clamp(36px,6vw,56px);
+    font-weight:700; color:var(--border-dim); line-height:1; padding-top:4px;
+  }
+  .curr-content h3 { font-size:var(--fs-md); font-weight:500; color:var(--text); margin-bottom:10px; }
+  .curr-content h3 span { color:var(--cyan); }
+  .curr-items { list-style:none; display:flex; flex-direction:column; gap:6px; }
+  .curr-items li {
+    font-size:var(--fs-xs); color:var(--text-muted);
+    display:flex; align-items:flex-start; gap:10px;
+  }
+  .curr-items li::before { content:'→'; color:var(--cyan); flex-shrink:0; margin-top:2px; }
+
+  /* DETAILS */
+  .details { padding:clamp(64px,10vw,110px) 0; }
+  .details-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:24px;
+  }
+  .detail-panel {
+    background:var(--bg3); border:1px solid var(--border-dim);
+    padding:clamp(24px,4vw,36px); position:relative; overflow:hidden;
+  }
+  .detail-panel.gold-accent::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg, var(--gold), transparent);
+  }
+  .detail-panel.cyan-accent::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg, var(--cyan), transparent);
+  }
+  .detail-panel h3 { font-size:var(--fs-label); letter-spacing:0.18em; color:var(--text-muted); margin-bottom:20px; }
+  .detail-list { list-style:none; display:flex; flex-direction:column; gap:14px; }
+  .detail-list li { font-size:var(--fs-xs); color:var(--text); display:flex; gap:12px; align-items:flex-start; line-height:1.75; }
+  .bullet { color:var(--gold); flex-shrink:0; margin-top:2px; }
+  .bullet-cyan { color:var(--cyan); flex-shrink:0; margin-top:2px; }
+
+  /* SPEAKER */
+  .speaker { padding:clamp(64px,10vw,100px) 0; background:var(--bg2); }
+  .speaker-inner { display:flex; gap:clamp(20px,4vw,40px); align-items:flex-start; margin-bottom:clamp(28px,4vw,44px); }
+  .speaker-inner:last-of-type { margin-bottom:0; }
+  .speaker-badge {
+    flex-shrink:0; width:clamp(60px,10vw,88px); height:clamp(60px,10vw,88px);
+    background:var(--cyan-dim); border:1px solid var(--cyan);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Noto Serif TC', serif; font-size:clamp(22px,4vw,32px); font-weight:700; color:var(--cyan);
+  }
+  .speaker-info h3 { font-size:var(--fs-lg); font-weight:600; font-family:'Noto Serif TC', serif; margin-bottom:4px; }
+  .speaker-info .role { font-size:var(--fs-xs); color:var(--cyan); letter-spacing:0.1em; margin-bottom:14px; }
+  .speaker-info p { font-size:var(--fs-xs); color:var(--text-muted); line-height:1.85; }
+
+  /* REGISTER */
+  .register { padding:clamp(64px,10vw,110px) 0; }
+  .register-box {
+    background:var(--bg3); border:1px solid var(--border);
+    padding:clamp(40px,7vw,72px) clamp(24px,6vw,60px);
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .register-box::before {
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(ellipse at top, rgba(0,200,212,0.06) 0%, transparent 60%);
+    pointer-events:none;
+  }
+  .price-label { font-size:var(--fs-xs); letter-spacing:0.18em; color:var(--text-muted); margin-bottom:8px; }
+  .price { font-family:'Noto Serif TC', serif; font-size:clamp(52px,10vw,88px); font-weight:700; line-height:1; margin-bottom:6px; }
+  .price sup { font-size:.38em; color:var(--text-muted); vertical-align:super; }
+  .price-note { font-size:var(--fs-xs); color:var(--text-dim); margin-bottom:clamp(28px,5vw,44px); }
+  .info-row { display:flex; flex-wrap:wrap; gap:20px 36px; justify-content:center; margin-bottom:clamp(28px,5vw,44px); }
+  .info-item { text-align:center; }
+  .info-item .label { font-size:var(--fs-label); letter-spacing:0.15em; color:var(--text-dim); margin-bottom:6px; }
+  .info-item .value { font-size:var(--fs-md); color:var(--text); font-weight:500; }
+  .divider { width:1px; height:44px; background:var(--border-dim); align-self:center; }
+  .cta-group { display:flex; flex-direction:column; align-items:center; gap:16px; width:100%; max-width:380px; }
+  .line-btn {
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    border:1px solid var(--border); padding:14px 24px;
+    font-size:var(--fs-xs); color:var(--text-muted); text-decoration:none; width:100%;
+    transition:border-color .2s, color .2s;
+  }
+  .line-btn:hover { border-color:var(--cyan); color:var(--text); }
+  .line-btn img { height:22px; }
+  .register-note { margin-top:28px; font-size:var(--fs-xs); color:var(--text-dim); max-width:480px; line-height:1.7; }
+
+  /* FOOTER */
+  footer {
+    padding:40px clamp(20px,5vw,48px); text-align:center;
+    border-top:1px solid var(--border-dim);
+    font-size:var(--fs-xs); color:var(--text-dim);
+    position:relative; z-index:1; line-height:1.9;
+  }
+
+  /* ANIMATION */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+  .reveal { opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* RWD */
+  @media(max-width:600px) {
+    .curr-block { grid-template-columns:1fr; }
+    .curr-num { font-size:28px; margin-bottom:8px; }
+    .btn-primary { padding:16px 28px; width:100%; text-align:center; clip-path:none; }
+    .speaker-inner { flex-direction:column; gap:16px; }
+    .divider { display:none; }
+    .register-box { padding:36px 20px; }
+    .hero-meta { gap:12px 20px; }
+  }
+  @media(max-width:400px) {
+    .problem-cards { grid-template-columns:1fr; }
+  }
+
+  /* REFUND */
+  .refund { padding:clamp(64px,10vw,110px) 0; background:var(--bg2); }
+  .policy-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:20px;
+  }
+  .policy-block {
+    background:var(--bg3); border:1px solid var(--border-dim);
+    padding:clamp(20px,3vw,28px); position:relative;
+  }
+  .policy-block h3 {
+    font-size:var(--fs-sm); font-weight:500; color:var(--cyan);
+    margin-bottom:12px; letter-spacing:0.04em;
+  }
+  .policy-block p { font-size:var(--fs-xs); color:var(--text-muted); line-height:1.8; }
+  .highlight-block { border-color:rgba(0,200,212,0.3); background:rgba(0,200,212,0.04); }
+  .highlight-block::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg, var(--cyan), transparent);
+  }
+  .policy-list { list-style:none; display:flex; flex-direction:column; gap:12px; margin-top:4px; }
+  .policy-list li { font-size:var(--fs-xs); color:var(--text-muted); display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .tag { font-size:13px; padding:3px 10px; border-radius:2px; font-weight:500; white-space:nowrap; }
+  .tag-green { background:rgba(80,200,120,0.15); color:#50c878; }
+  .tag-yellow { background:rgba(200,169,110,0.15); color:var(--gold); }
+  .tag-red { background:rgba(224,85,85,0.15); color:var(--red); }
+
+  /* PRIVACY */
+  .privacy { padding:clamp(48px,8vw,80px) 0; }
+  .privacy-box {
+    background:var(--bg3); border:1px solid var(--border-dim);
+    padding:clamp(24px,4vw,36px);
+  }
+  .privacy-list { list-style:none; display:flex; flex-direction:column; gap:14px; }
+  .privacy-list li {
+    font-size:var(--fs-xs); color:var(--text-muted); line-height:1.8;
+    display:flex; gap:12px; align-items:flex-start;
+  }
+  .privacy-list li::before { content:'·'; color:var(--text-dim); flex-shrink:0; font-size:20px; line-height:1.4; }
+
+  /* FOOTER LEGAL */
+  .footer-legal { margin-top:10px; font-size:14px; color:var(--text-muted); opacity:0.85; }
+
+
+  .btn-pay {
+    display:flex; align-items:center; justify-content:center;
+    width:100%; padding:15px 24px;
+    background:transparent;
+    border:1.5px solid var(--gold);
+    color:var(--gold); font-size:var(--fs-sm); font-weight:500;
+    letter-spacing:0.1em; text-decoration:none;
+    transition:background .2s, color .2s;
+  }
+  .btn-pay:hover { background:var(--gold); color:#080c10; }
+
+  /* VISUALS (原創示意圖) */
+  .visuals { padding:clamp(64px,10vw,110px) 0; background:var(--bg2); }
+  .fig-grid { display:flex; flex-direction:column; gap:clamp(40px,6vw,72px); }
+  .fig {
+    background:var(--bg3); border:1px solid var(--border-dim);
+    padding:clamp(20px,3.5vw,36px); position:relative; overflow:hidden;
+  }
+  .fig::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg, var(--cyan), transparent);
+  }
+  .fig.danger::before { background:linear-gradient(90deg, var(--red), transparent); }
+  .fig-head { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px; }
+  .fig-kicker { font-size:var(--fs-label); letter-spacing:0.18em; color:var(--cyan); }
+  .fig.danger .fig-kicker { color:var(--red); }
+  .fig-title { font-family:'Noto Serif TC', serif; font-size:var(--fs-lg); font-weight:600; }
+  .fig-desc { font-size:var(--fs-xs); color:var(--text-muted); margin-bottom:24px; max-width:660px; line-height:1.85; }
+  .fig-svg-wrap { width:100%; display:flex; justify-content:center; }
+  .fig-svg-wrap svg { width:100%; height:auto; max-width:780px; display:block; }
+  .fig-caption { margin-top:16px; font-size:13px; color:var(--text-dim); line-height:1.7; text-align:center; }
+
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-tag">2026 醫師精準醫療工作坊</div>
+  <h1 class="hero-title">注射之前，<br><span class="accent">先看清楚</span></h1>
+  <p class="hero-subtitle">手持超音波引導注射｜從栓塞預防到精準應用</p>
+  <div class="hero-meta">
+    <div class="meta-item">📅 <strong>2026.07.19（日）</strong></div>
+    <div class="meta-item">📍 <strong>高雄・新左營站 4F</strong>　<a href="https://lephare.maison-life.tw/xinzuoying-space/" target="_blank" style="color:var(--cyan);font-size:14px;text-decoration:none;border-bottom:1px solid rgba(0,200,212,0.4)">點我查看</a></div>
+    <div class="meta-item">👤 主講 <strong>陳暐軒醫師</strong></div>
+    <div class="meta-item">🎙 主持 <strong>醫美懂哥</strong></div>
+    <div class="meta-item">👥 <strong>限額 10 人</strong>｜小班實作制</div>
+  </div>
+  <div class="hero-cta">
+    <a href="#register" class="btn-primary">立即詢問報名</a>
+    <div class="seats-note">⚠ 名額稀缺，即將額滿</div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>SCROLL</div>
+</section>
+
+<section class="problem reveal">
+  <div class="container">
+    <div class="section-label">為什麼需要超音波</div>
+    <h2 class="section-title">注射栓塞，不是意外<br>是在不知道血管在哪的情況下做的決定</h2>
+    <p class="section-lead">安全區是統計，不是保證。</p>
+    <div class="problem-quote">
+      <p>也許 99.9% 沒事，甚至 0.09% 發生在不大嚴重的位置；<br>
+      但只要一發生，可能就是<span class="danger">幾百萬</span>。<br><br>
+      當初有先掃描過，或許就能避免——<br>
+      或至少證明「<span class="highlight">我當初有注意到這件事</span>」</p>
+    </div>
+    <div class="problem-cards">
+      <div class="problem-card">
+        <div class="problem-card-icon">🧬</div>
+        <h3>解剖變異</h3>
+        <p>高達 20–25% 的患者，其動脈緊貼骨面。教科書說 4%，超音波告訴你真相。</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-icon">📍</div>
+        <h3>層次錯誤</h3>
+        <p>手感告訴你的層次，常常不是真實的層次。填充物留置的位置，也常常出乎意料之外。</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-icon">🔍</div>
+        <h3>超音波幾乎都能回答</h3>
+        <p>血管位置、神經孔、填充物分布——注射前標記地雷，注射後影像確認。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="visuals reveal">
+  <div class="container">
+    <div class="section-label">看清楚，差在哪</div>
+    <h2 class="section-title">同一針，差一層<br>結果可能天差地遠</h2>
+    <p class="section-lead">以下為依據臨床解剖學繪製的概念示意圖，用來說明「層次」與「血管」為什麼是注射安全的核心。</p>
+
+    <div class="fig-grid">
+
+      <!-- 圖1：臉部五層模型 -->
+      <div class="fig">
+        <div class="fig-head">
+          <span class="fig-kicker">圖 01｜層次地圖</span>
+          <span class="fig-title">臉部的五層「生日蛋糕」</span>
+        </div>
+        <p class="fig-desc">手感能感覺到的，是阻力的變化；真正決定安全的，是針尖此刻在哪一層。皮膚、淺層脂肪、SMAS、深層脂肪、骨膜——每一層的血管分布完全不同。多數深層填充的安全終點，是貼著骨膜的骨膜上層（supraperiosteal）。</p>
+        <div class="fig-svg-wrap">
+          <svg viewBox="0 0 760 360" role="img" aria-label="臉部五層解剖剖面示意圖">
+            <defs>
+              <linearGradient id="skinG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2e2a"/><stop offset="1" stop-color="#2c2421"/></linearGradient>
+              <linearGradient id="fatG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8a96e" stop-opacity="0.32"/><stop offset="1" stop-color="#c8a96e" stop-opacity="0.18"/></linearGradient>
+              <linearGradient id="smasG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00c8d4" stop-opacity="0.30"/><stop offset="1" stop-color="#00c8d4" stop-opacity="0.16"/></linearGradient>
+              <linearGradient id="deepG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8a96e" stop-opacity="0.20"/><stop offset="1" stop-color="#c8a96e" stop-opacity="0.10"/></linearGradient>
+            </defs>
+            <!-- layers -->
+            <rect x="40" y="40"  width="520" height="40" fill="url(#skinG)" stroke="rgba(255,255,255,0.12)"/>
+            <rect x="40" y="80"  width="520" height="55" fill="url(#fatG)"  stroke="rgba(255,255,255,0.08)"/>
+            <rect x="40" y="135" width="520" height="26" fill="url(#smasG)" stroke="rgba(0,200,212,0.45)"/>
+            <rect x="40" y="161" width="520" height="70" fill="url(#deepG)" stroke="rgba(255,255,255,0.08)"/>
+            <rect x="40" y="231" width="520" height="22" fill="#5a6470" opacity="0.55"/>
+            <rect x="40" y="253" width="520" height="60" fill="#2a3038"/>
+            <!-- vessels in supra-SMAS & SMAS -->
+            <path d="M70,108 q60,-18 120,0 t120,0 t120,0 t120,0" fill="none" stroke="#e05555" stroke-width="3" opacity="0.85"/>
+            <circle cx="250" cy="148" r="6" fill="#0d1318" stroke="#e05555" stroke-width="2.5"/>
+            <circle cx="430" cy="148" r="6" fill="#0d1318" stroke="#e05555" stroke-width="2.5"/>
+            <!-- needle to periosteum (safe) -->
+            <line x1="610" y1="20" x2="500" y2="240" stroke="#00c8d4" stroke-width="4"/>
+            <polygon points="500,240 496,228 511,233" fill="#00c8d4"/>
+            <circle cx="500" cy="244" r="9" fill="#00c8d4" opacity="0.25"/>
+            <!-- labels -->
+            <g class="svg-label" font-size="15" fill="#e8edf2">
+              <text x="575" y="64">① 皮膚 Skin</text>
+              <text x="575" y="112">② 淺層脂肪 supra-SMAS</text>
+              <text x="575" y="152" fill="#00c8d4">③ SMAS（血管常潛行於此）</text>
+              <text x="575" y="200">④ 深層脂肪 sub-SMAS</text>
+              <text x="575" y="246" fill="#aeb9c4">⑤ 骨膜 Periosteum</text>
+            </g>
+            <text x="455" y="300" class="svg-label" font-size="14" fill="#00c8d4">骨膜上層＝多數深層填充的安全終點</text>
+            <text x="70" y="98" class="svg-label" font-size="13" fill="#e05555">血管</text>
+          </svg>
+        </div>
+        <p class="fig-caption">概念示意圖（依臨床解剖學自行繪製，非任何書籍原圖）</p>
+      </div>
+
+      <!-- 圖2：危險區地圖 -->
+      <div class="fig danger">
+        <div class="fig-head">
+          <span class="fig-kicker">圖 02｜危險區</span>
+          <span class="fig-title">臉上的「地雷區」在哪</span>
+        </div>
+        <p class="fig-desc">最怕的不是表淺血管，而是那些與眼動脈相通的路徑。眉間、鼻部、太陽穴一旦發生血管內栓塞，填充物可能逆行進入視網膜中央動脈——這正是少數但會造成「失明」的途徑。</p>
+        <div class="fig-svg-wrap">
+          <svg viewBox="0 0 880 380" role="img" aria-label="臉部高風險注射區域示意圖">
+            <!-- face silhouette -->
+            <path d="M380,30 C470,30 520,95 520,180 C520,270 460,350 380,350 C300,350 240,270 240,180 C240,95 290,30 380,30 Z"
+                  fill="#111820" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+            <!-- eyes / brows -->
+            <path d="M300,160 q30,-16 60,0" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+            <path d="M400,160 q30,-16 60,0" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+            <ellipse cx="328" cy="178" rx="16" ry="8" fill="none" stroke="rgba(255,255,255,0.2)"/>
+            <ellipse cx="432" cy="178" rx="16" ry="8" fill="none" stroke="rgba(255,255,255,0.2)"/>
+            <!-- nose -->
+            <path d="M380,180 L368,238 q12,12 24,0" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+            <!-- danger pins -->
+            <g>
+              <circle cx="380" cy="138" r="13" fill="#e05555" opacity="0.85"/><circle cx="380" cy="138" r="22" fill="none" stroke="#e05555" stroke-width="1.5" opacity="0.5"/>
+              <circle cx="378" cy="228" r="12" fill="#e05555" opacity="0.85"/><circle cx="378" cy="228" r="20" fill="none" stroke="#e05555" stroke-width="1.5" opacity="0.5"/>
+              <circle cx="266" cy="150" r="11" fill="#e05555" opacity="0.85"/><circle cx="266" cy="150" r="18" fill="none" stroke="#e05555" stroke-width="1.5" opacity="0.5"/>
+              <circle cx="494" cy="150" r="11" fill="#e05555" opacity="0.85"/><circle cx="494" cy="150" r="18" fill="none" stroke="#e05555" stroke-width="1.5" opacity="0.5"/>
+              <circle cx="318" cy="205" r="9" fill="#c8a96e" opacity="0.85"/>
+              <circle cx="442" cy="205" r="9" fill="#c8a96e" opacity="0.85"/>
+            </g>
+            <!-- callouts -->
+            <g class="svg-label" font-size="15" fill="#e8edf2">
+              <line x1="393" y1="135" x2="600" y2="95" stroke="rgba(224,85,85,0.5)"/><text x="606" y="100" fill="#e05555">眉間 Glabella</text>
+              <text x="606" y="120" font-size="12" fill="#8aa0b4">→ 滑車上動脈・通眼動脈</text>
+              <line x1="389" y1="228" x2="600" y2="200" stroke="rgba(224,85,85,0.5)"/><text x="606" y="205" fill="#e05555">鼻部 Nose</text>
+              <text x="606" y="225" font-size="12" fill="#8aa0b4">→ 鼻背／角動脈・失明高風險</text>
+              <line x1="255" y1="150" x2="150" y2="110" stroke="rgba(224,85,85,0.5)"/><text x="40" y="105" fill="#e05555">太陽穴 Temple</text>
+              <text x="40" y="125" font-size="12" fill="#8aa0b4">→ 深顳動脈、前哨靜脈</text>
+              <line x1="330" y1="208" x2="180" y2="250" stroke="rgba(200,169,110,0.5)"/><text x="40" y="255" fill="#c8a96e">淚溝 Tear trough</text>
+              <text x="40" y="275" font-size="12" fill="#8aa0b4">→ 角動脈，鄰近眶下孔</text>
+            </g>
+          </svg>
+        </div>
+        <p class="fig-caption">● 紅：可逆行至眼動脈／失明風險區　● 金：鄰近重要血管與神經孔（概念示意圖）</p>
+      </div>
+
+      <!-- 圖3：打對 vs 打錯 -->
+      <div class="fig danger">
+        <div class="fig-head">
+          <span class="fig-kicker">圖 03｜對照</span>
+          <span class="fig-title">打在骨膜上 ＶＳ 打進血管裡</span>
+        </div>
+        <p class="fig-desc">差別往往只有 1–2 公釐的深度。左：針尖貼骨膜、填充物在血管外安全鋪開。右：針尖剛好落在血管腔內，推注時填充物進入血流、開始逆行——肉眼與手感都不會告訴你這件事，超音波會。</p>
+        <div class="fig-svg-wrap">
+          <svg viewBox="0 0 760 320" role="img" aria-label="正確層次與錯誤層次注射對照示意圖">
+            <!-- LEFT correct -->
+            <g>
+              <rect x="30" y="40" width="320" height="32" fill="#3a2e2a"/>
+              <rect x="30" y="72" width="320" height="48" fill="#c8a96e" opacity="0.22"/>
+              <rect x="30" y="120" width="320" height="20" fill="#00c8d4" opacity="0.22"/>
+              <rect x="30" y="140" width="320" height="64" fill="#c8a96e" opacity="0.12"/>
+              <rect x="30" y="204" width="320" height="18" fill="#5a6470" opacity="0.55"/>
+              <rect x="30" y="222" width="320" height="40" fill="#2a3038"/>
+              <circle cx="150" cy="95" r="7" fill="#0d1318" stroke="#e05555" stroke-width="2.5"/>
+              <line x1="270" y1="20" x2="200" y2="196" stroke="#00c8d4" stroke-width="4"/>
+              <polygon points="200,196 196,184 211,189" fill="#00c8d4"/>
+              <ellipse cx="190" cy="200" rx="46" ry="12" fill="#00c8d4" opacity="0.3"/>
+              <text x="40" y="295" class="svg-label" font-size="16" fill="#00c8d4">✓ 骨膜上層・血管外</text>
+            </g>
+            <line x1="380" y1="30" x2="380" y2="280" stroke="rgba(255,255,255,0.1)" stroke-dasharray="4 6"/>
+            <!-- RIGHT wrong -->
+            <g>
+              <rect x="410" y="40" width="320" height="32" fill="#3a2e2a"/>
+              <rect x="410" y="72" width="320" height="48" fill="#c8a96e" opacity="0.22"/>
+              <rect x="410" y="120" width="320" height="20" fill="#00c8d4" opacity="0.22"/>
+              <rect x="410" y="140" width="320" height="64" fill="#c8a96e" opacity="0.12"/>
+              <rect x="410" y="204" width="320" height="18" fill="#5a6470" opacity="0.55"/>
+              <rect x="410" y="222" width="320" height="40" fill="#2a3038"/>
+              <!-- vessel -->
+              <path d="M430,128 q90,-14 150,0 t150,0" fill="none" stroke="#e05555" stroke-width="9" opacity="0.45"/>
+              <line x1="650" y1="20" x2="560" y2="128" stroke="#e05555" stroke-width="4"/>
+              <polygon points="560,128 556,116 571,121" fill="#e05555"/>
+              <!-- retrograde filler arrows in vessel -->
+              <path d="M555,128 L470,128" fill="none" stroke="#e05555" stroke-width="3"/>
+              <polygon points="470,128 482,123 482,133" fill="#e05555"/>
+              <circle cx="560" cy="128" r="14" fill="#e05555" opacity="0.3"/>
+              <text x="420" y="295" class="svg-label" font-size="16" fill="#e05555">✕ 針尖入血管・逆行栓塞</text>
+            </g>
+          </svg>
+        </div>
+        <p class="fig-caption">手感判斷的深度，常常不是真實的深度（概念示意圖）</p>
+      </div>
+
+      <!-- 圖4：栓塞級聯 vs 超音波 -->
+      <div class="fig">
+        <div class="fig-head">
+          <span class="fig-kicker">圖 04｜兩條路</span>
+          <span class="fig-title">一旦進入血管，會發生什麼</span>
+        </div>
+        <p class="fig-desc">上排是血管內栓塞的連鎖反應；下排是把超音波放進流程後，多出來的那一步——注射前先掃描、即時看見血管、避開，把風險擋在第一關之前。</p>
+        <div class="fig-svg-wrap">
+          <svg viewBox="0 0 760 300" role="img" aria-label="血管栓塞連鎖反應與超音波預防流程對照圖">
+            <defs>
+              <marker id="arR" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><polygon points="0,0 7,3 0,6" fill="#e05555"/></marker>
+              <marker id="arC" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><polygon points="0,0 7,3 0,6" fill="#00c8d4"/></marker>
+            </defs>
+            <!-- risk row -->
+            <text x="30" y="35" class="svg-label" font-size="13" fill="#e05555" letter-spacing="2">沒有影像｜RISK</text>
+            <g class="svg-label" font-size="14" fill="#e8edf2">
+              <rect x="30"  y="48" width="120" height="56" rx="3" fill="rgba(224,85,85,0.10)" stroke="#e05555"/><text x="90" y="73" text-anchor="middle">填充物</text><text x="90" y="92" text-anchor="middle">進入動脈</text>
+              <line x1="156" y1="76" x2="196" y2="76" stroke="#e05555" stroke-width="2" marker-end="url(#arR)"/>
+              <rect x="200" y="48" width="120" height="56" rx="3" fill="rgba(224,85,85,0.10)" stroke="#e05555"/><text x="260" y="73" text-anchor="middle">逆行 →</text><text x="260" y="92" text-anchor="middle">分支阻塞</text>
+              <line x1="326" y1="76" x2="366" y2="76" stroke="#e05555" stroke-width="2" marker-end="url(#arR)"/>
+              <rect x="370" y="48" width="130" height="56" rx="3" fill="rgba(224,85,85,0.10)" stroke="#e05555"/><text x="435" y="73" text-anchor="middle">組織缺血</text><text x="435" y="92" text-anchor="middle">皮膚壞死</text>
+              <line x1="506" y1="76" x2="546" y2="76" stroke="#e05555" stroke-width="2" marker-end="url(#arR)"/>
+              <rect x="550" y="40" width="180" height="72" rx="3" fill="rgba(224,85,85,0.18)" stroke="#e05555" stroke-width="2"/><text x="640" y="70" text-anchor="middle" fill="#ff8a8a" font-size="16">視網膜動脈阻塞</text><text x="640" y="94" text-anchor="middle" fill="#ff8a8a" font-size="16">→ 失明</text>
+            </g>
+            <!-- divider -->
+            <line x1="30" y1="150" x2="730" y2="150" stroke="rgba(255,255,255,0.08)"/>
+            <!-- safe row -->
+            <text x="30" y="190" class="svg-label" font-size="13" fill="#00c8d4" letter-spacing="2">先掃描｜ULTRASOUND</text>
+            <g class="svg-label" font-size="14" fill="#e8edf2">
+              <rect x="30"  y="204" width="130" height="56" rx="3" fill="rgba(0,200,212,0.10)" stroke="#00c8d4"/><text x="95" y="229" text-anchor="middle">注射前</text><text x="95" y="248" text-anchor="middle">掃描標記</text>
+              <line x1="166" y1="232" x2="206" y2="232" stroke="#00c8d4" stroke-width="2" marker-end="url(#arC)"/>
+              <rect x="210" y="204" width="130" height="56" rx="3" fill="rgba(0,200,212,0.10)" stroke="#00c8d4"/><text x="275" y="229" text-anchor="middle">即時看見</text><text x="275" y="248" text-anchor="middle">血管位置</text>
+              <line x1="346" y1="232" x2="386" y2="232" stroke="#00c8d4" stroke-width="2" marker-end="url(#arC)"/>
+              <rect x="390" y="204" width="130" height="56" rx="3" fill="rgba(0,200,212,0.10)" stroke="#00c8d4"/><text x="455" y="229" text-anchor="middle">避開・確認</text><text x="455" y="248" text-anchor="middle">層次</text>
+              <line x1="526" y1="232" x2="566" y2="232" stroke="#00c8d4" stroke-width="2" marker-end="url(#arC)"/>
+              <rect x="570" y="196" width="160" height="72" rx="3" fill="rgba(0,200,212,0.18)" stroke="#00c8d4" stroke-width="2"/><text x="650" y="226" text-anchor="middle" fill="#5fe4ec" font-size="16">風險擋在</text><text x="650" y="250" text-anchor="middle" fill="#5fe4ec" font-size="16">第一關之前</text>
+            </g>
+          </svg>
+        </div>
+        <p class="fig-caption">超音波不能保證 100%，但能把「我當初有注意到」變成可被看見、可被記錄的一步（概念示意圖）</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="curriculum reveal">
+  <div class="container">
+    <div class="section-label">課程架構</div>
+    <h2 class="section-title">從栓塞預防出發<br>延伸至每天都在做的療程</h2>
+    <p class="section-lead">一台超音波，涵蓋四大臨床場景。</p>
+    <div class="curriculum-blocks">
+      <div class="curr-block">
+        <div class="curr-num">01</div>
+        <div class="curr-content">
+          <h3><span>玻尿酸注射</span>｜栓塞預防核心</h3>
+          <ul class="curr-items">
+            <li>為什麼解剖變異讓「安全區」從來不是 100%</li>
+            <li>用超音波掃描血管、神經孔，注射前標記地雷位置</li>
+            <li>術前掃描標準化流程——不增加額外負擔的方式</li>
+            <li>回診時用影像確認填充物位置與分布</li>
+          </ul>
+        </div>
+      </div>
+      <div class="curr-block">
+        <div class="curr-num">02</div>
+        <div class="curr-content">
+          <h3><span>肉毒拉提</span>｜精準肌肉定位</h3>
+          <ul class="curr-items">
+            <li>小臉肉毒：針真的打到所有咀嚼肌了嗎？</li>
+            <li>下頷拉提：淺淺打的真的是闊頸肌嗎？</li>
+            <li>超音波即時確認，從「感覺對」升級到「確認對」</li>
+          </ul>
+        </div>
+      </div>
+      <div class="curr-block">
+        <div class="curr-num">03</div>
+        <div class="curr-content">
+          <h3><span>音波拉提</span>｜層次驗證</h3>
+          <ul class="curr-items">
+            <li>那個位置有所謂「筋膜」嗎？</li>
+            <li>能量真的聚焦在目標層次嗎？</li>
+            <li>超音波即時影像，不再靠感覺判斷</li>
+          </ul>
+        </div>
+      </div>
+      <div class="curr-block">
+        <div class="curr-num">04</div>
+        <div class="curr-content">
+          <h3><span>Onda / 消脂針 / 冷凍減脂</span>｜療效數字化</h3>
+          <ul class="curr-items">
+            <li>療效不是感覺，是治療前後的脂肪厚度數字</li>
+            <li>用影像數據終結客人的療效質疑</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="details reveal">
+  <div class="container">
+    <div class="section-label">適合對象 ＆ 你會帶走什麼</div>
+    <h2 class="section-title">你的每一針<br>都值得有影像支持</h2>
+    <p class="section-lead">不是感覺，是數據。</p>
+    <div class="details-grid">
+      <div class="detail-panel gold-accent">
+        <h3>適合對象</h3>
+        <ul class="detail-list">
+          <li><span class="bullet">▸</span><span>開始接觸注射療程，希望從一開始就建立影像輔助習慣的新手醫師</span></li>
+          <li><span class="bullet">▸</span><span>已有注射經驗，希望用超音波把技術從「感覺對」升級為「確認對」的進階醫師</span></li>
+          <li><span class="bullet">▸</span><span>想用數據終結客人減脂 / 體雕療效質疑的臨床醫師</span></li>
+        </ul>
+      </div>
+      <div class="detail-panel cyan-accent">
+        <h3>你會帶走什麼</h3>
+        <ul class="detail-list">
+          <li><span class="bullet-cyan">→</span><span>手持超音波的臨床判讀邏輯</span></li>
+          <li><span class="bullet-cyan">→</span><span>注射前血管 / 神經掃描的標準流程</span></li>
+          <li><span class="bullet-cyan">→</span><span>四大療程的超音波應用 SOP</span></li>
+          <li><span class="bullet-cyan">→</span><span>用影像數據跟客人溝通的方法</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="speaker reveal">
+  <div class="container">
+    <div class="section-label">講師介紹</div>
+    <div class="speaker-inner">
+      <div class="speaker-badge">陳</div>
+      <div class="speaker-info">
+        <h3>陳暐軒 醫師</h3>
+        <div class="role">主講醫師</div>
+        <p>專精於超音波引導注射技術，致力將影像輔助工具融入醫美臨床常規。課程以實際臨床案例為核心，從解剖學基礎出發，建立系統化的安全注射思維框架。</p>
+      </div>
+    </div>
+    <div class="speaker-inner">
+      <div class="speaker-badge" style="font-size:clamp(13px,2.5vw,18px)">懂哥</div>
+      <div class="speaker-info">
+        <h3>醫美懂哥</h3>
+        <div class="role">主持人｜醫美教育平台</div>
+        <p>相信醫美值得被認真做。從營運邏輯、資訊系統，到客人與員工的感受，深入診所經營的本質——補齊醫師最少被教、卻最影響成敗的那一塊。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="register reveal" id="register">
+  <div class="container">
+    <div class="section-label">報名資訊</div>
+    <div class="register-box">
+      <div class="price-label">課程費用</div>
+      <div class="price"><sup>NT$</sup>15,000</div>
+      <div class="price-note">含課程講義 ＆ 實作練習</div>
+      <div class="info-row">
+        <div class="info-item">
+          <div class="label">日期</div>
+          <div class="value">2026.07.19（日）</div>
+        </div>
+        <div class="divider"></div>
+        <div class="info-item">
+          <div class="label">地點</div>
+          <div class="value"><a href="https://lephare.maison-life.tw/xinzuoying-space/" target="_blank" style="color:var(--text);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.2)">新左營站 4F <span style="color:var(--cyan);font-size:14px">↗</span></a></div>
+        </div>
+        <div class="divider"></div>
+        <div class="info-item">
+          <div class="label">名額</div>
+          <div class="value" style="color:var(--red)">限額 10 人</div>
+        </div>
+      </div>
+      <div class="cta-group">
+        <a href="https://lin.ee/ZHY7J81" class="btn-primary" style="width:100%;text-align:center;clip-path:none;">
+          立即詢問 ／ 報名
+        </a>
+        <a href="https://api.payuni.com.tw/api/uop/receive_info/2/1/U023577191/X2pPHnvtfyB5NxwudBKC5" target="_blank" class="btn-pay">
+          線上付款
+        </a>
+        <a href="https://lin.ee/ZHY7J81" class="line-btn" target="_blank">
+          <img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" alt="加入好友">
+          加入醫美懂哥官方 LINE
+        </a>
+      </div>
+      <div class="register-note">＊ 本課程以醫師為主要對象，報名前請先透過 LINE 確認資格與名額</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="refund reveal">
+  <div class="container">
+    <div class="section-label">退費辦法</div>
+    <div class="policy-grid">
+      <div class="policy-block">
+        <h3>開課門檻</h3>
+        <p>本工作坊最低成班人數為 <strong>6 人</strong>。若報名人數未達門檻，主辦方將於課程日 <strong>14 天前</strong>通知取消，並於 <strong>7 個工作天</strong>內全額退費。</p>
+      </div>
+      <div class="policy-block highlight-block">
+        <h3>付款後請務必完成以下步驟 ⚠</h3>
+        <p>完成付款後，請加入醫美懂哥官方 LINE 並回報<strong>姓名與付款資訊</strong>，以利確認報名資格及接收開課通知。未完成回報者視同報名未完成。</p>
+        <div style="margin-top:16px">
+          <a href="https://lin.ee/ZHY7J81" class="line-btn" target="_blank" style="max-width:300px">
+            <img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" alt="加入好友">
+            加入官方 LINE 回報
+          </a>
+        </div>
+      </div>
+      <div class="policy-block">
+        <h3>學員個人取消退費規則</h3>
+        <ul class="policy-list">
+          <li><span class="tag tag-green">14 天前取消</span> 退費 80%</li>
+          <li><span class="tag tag-yellow">7 天前取消</span> 退費 50%</li>
+          <li><span class="tag tag-red">7 天內取消</span> 恕不退費</li>
+        </ul>
+      </div>
+      <div class="policy-block">
+        <h3>課程異動通知</h3>
+        <p>課程日期或地點如有任何異動，主辦方將優先透過 LINE 官方帳號通知已報名學員，請確保加入後開啟通知。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="privacy reveal">
+  <div class="container">
+    <div class="section-label">隱私權聲明</div>
+    <div class="privacy-box">
+      <ul class="privacy-list">
+        <li>本頁面收集之個人資訊（姓名、聯絡方式、職業）<strong>僅用於活動報名、開課通知及相關聯繫</strong>，不作其他用途。</li>
+        <li>資料不會提供予任何第三方，亦不用於商業行銷目的。</li>
+        <li>活動結束後，報名相關個人資料將於 <strong>1 年內</strong>刪除。</li>
+        <li>如需查詢、更正或要求刪除個人資料，請透過官方 LINE 聯繫主辦方。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<footer>
+  <p>© 2026 醫美懂哥 ｜ 2026 醫師精準醫療工作坊</p>
+  <p>本頁面資訊以最終公告為準</p>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }),
+    { threshold:.08 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
